@@ -1,0 +1,107 @@
+/* Chatbot.css */
+.chatbox-container {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    margin: auto;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.chatbox-header {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px;
+    text-align: center;
+}
+
+.chatbox-messages {
+    flex: 1;
+    padding: 10px;
+    overflow-y: auto;
+    background-color: #f9f9f9;
+}
+
+.chatbox-footer {
+    display: flex;
+    padding: 10px;
+    border-top: 1px solid #ddd;
+    background-color: #fff;
+}
+
+.chatbox-footer input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.chatbox-footer button {
+    background-color: #4CAF50;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    color: white;
+    border-radius: 4px;
+    margin-left: 10px;
+}
+
+.chatbox-footer button img {
+    height: 20px;
+    width: 20px;
+}
+
+.chat-message {
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+.chat-message.user {
+    background-color: #007bff;
+    color: white;
+    align-self: flex-end;
+}
+
+.chat-message.bot {
+    background-color: #e5e5ea;
+    color: black;
+    align-self: flex-start;
+}
+
+/* Additional styles for EmailInput component */
+.login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #f1f1f1;
+}
+
+.welcome-message {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.login-header {
+    margin-bottom: 10px;
+}
+
+.login-container input {
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    width: 300px;
+}
+
+.login-container button {
+    padding: 10px 20px;
+    border: none;
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+}
