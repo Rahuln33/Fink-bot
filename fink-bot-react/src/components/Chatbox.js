@@ -190,19 +190,36 @@
 // };
 
 // export default Chatbox;
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import './Chatbox.css';
 import sendIcon from '../assets/sendmessage.png';
 import chaticon from '../assets/message.jpg';
-// import './styles/chatbot.css';
+
 const Chatbox = ({ sessionId, email }) => {
     const [messages, setMessages] = useState([]);
     const [userInput, setUserInput] = useState('');
+    const messagesEndRef = useRef(null);
+
+    useEffect(() => {
+        const storedMessages = localStorage.getItem('chatMessages');
+        if (storedMessages) {
+            setMessages(JSON.parse(storedMessages));
+        }
+    }, []);
+
+    useEffect(() => {
+        localStorage.setItem('chatMessages', JSON.stringify(messages));
+        scrollToBottom();
+    }, [messages]);
 
     const toggleChatbox = () => {
         const chatbox = document.querySelector('.chatbox__support');
         chatbox.classList.toggle('chatbox--active');
+    };
+
+    const scrollToBottom = () => {
+        messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
     };
 
     const sendMessage = async () => {
@@ -218,11 +235,11 @@ const Chatbox = ({ sessionId, email }) => {
                 email: email
             });
             const botMessage = { name: 'Bot', message: response.data.response };
-            setMessages([...messages, botMessage]);
+            setMessages((prevMessages) => [...prevMessages, botMessage]);
         } catch (error) {
             console.error('Error:', error);
             const errorMessage = { name: 'Bot', message: 'Sorry, something went wrong.' };
-            setMessages([...messages, errorMessage]);
+            setMessages((prevMessages) => [...prevMessages, errorMessage]);
         } finally {
             setUserInput('');
         }
@@ -232,22 +249,26 @@ const Chatbox = ({ sessionId, email }) => {
         setUserInput(e.target.value);
     };
 
+    const handleKeyPress = (e) => {
+        if (e.key === 'Enter') {
+            sendMessage();
+        }
+    };
+
     return (
         <div>
             <div className="chatbox__button" onClick={toggleChatbox}>
-                <button><img src={chaticon} alt="Chat Icon" width='10px' height='10px' /></button>
+                <button><img src={chaticon} alt="Chat Icon" width="40px" height="40px" /></button>
             </div>
             <div className="chatbox__support">
                 <div className="chatbox__header">
-                <div className="chatbox__header">
-                     <div className="chatbox__image--header">
-                         <img src="https://img.icons8.com/color/48/000000/circled-user-female-skin-type-5--v1.png" alt="Support" />
-                     </div>
-                     <div className="chatbox__content--header">
-                         <h4 className="chatbox__heading--header">Finkraft</h4>
-                         <p className="chatbox__description--header">Greetings! I'm Fink. What assistance can I provide you with today?</p>
+                    <div className="chatbox__image--header">
+                        <img src="https://i.pinimg.com/564x/6c/1e/10/6c1e10e6ddfc5002662049930702c23a.jpg" alt="Support" />
                     </div>
-                 </div>
+                    <div className="chatbox__content--header">
+                        <h4 className="chatbox__heading--header">Fink ai</h4>
+                        <p className="chatbox__description--header">Greetings! I'm Fink. What assistance can I provide you with today?</p>
+                    </div>
                 </div>
                 <div className="chatbox__messages">
                     {messages.map((msg, index) => (
@@ -255,16 +276,18 @@ const Chatbox = ({ sessionId, email }) => {
                             <div className="message__content">{msg.message}</div>
                         </div>
                     ))}
+                    <div ref={messagesEndRef}></div>
                 </div>
                 <div className="chatbox__footer">
                     <input 
                         type="text" 
                         value={userInput} 
                         onChange={handleInputChange} 
+                        onKeyPress={handleKeyPress}
                         placeholder="Type a message..." 
                     />
                     <button onClick={sendMessage}>
-                        <img src={sendIcon} alt="Send" width='20px' height='20px'/>
+                        <img src={sendIcon} alt="Send" width="20px" height="20px" />
                     </button>
                 </div>
             </div>

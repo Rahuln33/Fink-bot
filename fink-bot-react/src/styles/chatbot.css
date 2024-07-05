@@ -1,107 +1,61 @@
-/* Chatbot.css */
-.chatbox-container {
-    display: flex;
-    flex-direction: column;
-    width: 300px;
-    margin: auto;
+/* chatbot.css */
+
+/* Add Google Fonts link */
+@import url('https://fonts.googleapis.com/css2?family=Anton+SC&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+
+/* Styles for the login container */
+.login-container {
+    font-family: 'Anton SC', sans-serif;
+    max-width: 400px;
+    margin: 10% auto; /* Adjusted margin to center vertically and horizontally */
+    padding: 20px;
+    background-color: #f0f0f0;
     border: 1px solid #ccc;
     border-radius: 8px;
-    overflow: hidden;
-}
-
-.chatbox-header {
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px;
     text-align: center;
 }
 
-.chatbox-messages {
-    flex: 1;
-    padding: 10px;
-    overflow-y: auto;
-    background-color: #f9f9f9;
-}
-
-.chatbox-footer {
-    display: flex;
-    padding: 10px;
-    border-top: 1px solid #ddd;
-    background-color: #fff;
-}
-
-.chatbox-footer input {
-    flex: 1;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-.chatbox-footer button {
-    background-color: #4CAF50;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
-    color: white;
-    border-radius: 4px;
-    margin-left: 10px;
-}
-
-.chatbox-footer button img {
-    height: 20px;
-    width: 20px;
-}
-
-.chat-message {
+/* Welcome message styles */
+.welcome-message {
+    font-size: 24px;
     margin-bottom: 10px;
-    padding: 10px;
-    border-radius: 4px;
 }
 
-.chat-message.user {
-    background-color: #007bff;
-    color: white;
-    align-self: flex-end;
+/* Login header styles */
+.login-header {
+    font-size: 20px;
+    margin-bottom: 10px;
 }
 
-.chat-message.bot {
-    background-color: #e5e5ea;
-    color: black;
-    align-self: flex-start;
-}
-
-/* Additional styles for EmailInput component */
-.login-container {
+/* Form styles */
+form {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    height: 100vh;
-    background-color: #f1f1f1;
 }
 
-.welcome-message {
-    font-size: 24px;
-    margin-bottom: 20px;
-}
-
-.login-header {
-    margin-bottom: 10px;
-}
-
-.login-container input {
+/* Form input styles */
+input[type="email"] {
+    width: 100%;
     padding: 10px;
     margin-bottom: 10px;
-    border-radius: 4px;
     border: 1px solid #ccc;
-    width: 300px;
+    border-radius: 4px;
+    font-size: 16px;
 }
 
-.login-container button {
-    padding: 10px 20px;
-    border: none;
-    background-color: #4CAF50;
+/* Submit button styles */
+button[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
     color: white;
+    border: none;
     border-radius: 4px;
     cursor: pointer;
+    font-size: 16px;
+}
+
+button[type="submit"]:hover {
+    background-color: #0056b3;
 }
