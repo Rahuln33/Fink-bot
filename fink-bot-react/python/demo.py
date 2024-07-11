@@ -1,77 +1,77 @@
 
-import json
-import openai
+# import json
+# import openai
 
-# Load FinKraft data from JSON file
-with open('finkraft_data.json', 'r') as file:
-    finkraft_data = json.load(file)
+# # Load FinKraft data from JSON file
+# with open('finkraft_data.json', 'r') as file:
+#     finkraft_data = json.load(file)
 
-# Initialize OpenAI client
-client = openai.AzureOpenAI(
-    azure_endpoint="https://finkdataopenai.openai.azure.com/",
-    api_key='d57b4f240c6f4c12bb8d316469e45f69',
-    api_version="2024-02-15-preview"
-)
+# # Initialize OpenAI client
+# client = openai.AzureOpenAI(
+#     azure_endpoint="https://finkdataopenai.openai.azure.com/",
+#     api_key='d57b4f240c6f4c12bb8d316469e45f69',
+#     api_version="2024-02-15-preview"
+# )
 
-def extract_information(query):
-    """
-    Extract relevant information from finkraft_data based on the user's query.
-    """
-    # Normalize the query
-    query = query.lower()
+# def extract_information(query):
+#     """
+#     Extract relevant information from finkraft_data based on the user's query.
+#     """
+#     # Normalize the query
+#     query = query.lower()
     
-    # Define a dictionary to hold matching information
-    extracted_info = {}
+#     # Define a dictionary to hold matching information
+#     extracted_info = {}
     
-    for key, value in finkraft_data.items():
-        if key.lower() in query:
-            extracted_info[key] = value
+#     for key, value in finkraft_data.items():
+#         if key.lower() in query:
+#             extracted_info[key] = value
     
-    if extracted_info:
-        # Format the extracted information in a user-friendly manner
-        response = ""
-        for key, value in extracted_info.items():
-            response += f"{key}:\n{value}\n\n"
-        return response.strip()
-    else:
-        return None
+#     if extracted_info:
+#         # Format the extracted information in a user-friendly manner
+#         response = ""
+#         for key, value in extracted_info.items():
+#             response += f"{key}:\n{value}\n\n"
+#         return response.strip()
+#     else:
+#         return None
 
-def query(user_input):
-    # Extract relevant information from finkraft_data
-    info = extract_information(user_input)
+# def query(user_input):
+#     # Extract relevant information from finkraft_data
+#     info = extract_information(user_input)
     
-    if info:
-        return info
-    else:
-        # Call OpenAI API using appropriate method if info not found in JSON
-        completion = client.chat.completions.create(
-            model="gpt-35-turbo",
-            messages=[
-                {"role": "system", "content": "You are Fink, a chatbot for FinKraft AI. Provide detailed and user-friendly information to the users."},
-                {"role": "user", "content": user_input}
-            ],
-            temperature=0.7,
-            max_tokens=150,
-            top_p=1.0,
-            frequency_penalty=0,
-            presence_penalty=0,
-            stop=None
-        )
-        bot_response = completion.choices[0].message.content
-        return bot_response
+#     if info:
+#         return info
+#     else:
+#         # Call OpenAI API using appropriate method if info not found in JSON
+#         completion = client.chat.completions.create(
+#             model="gpt-35-turbo",
+#             messages=[
+#                 {"role": "system", "content": "You are Fink, a chatbot for FinKraft AI. Provide detailed and user-friendly information to the users."},
+#                 {"role": "user", "content": user_input}
+#             ],
+#             temperature=0.7,
+#             max_tokens=150,
+#             top_p=1.0,
+#             frequency_penalty=0,
+#             presence_penalty=0,
+#             stop=None
+#         )
+#         bot_response = completion.choices[0].message.content
+#         return bot_response
 
-def main():
-    print("Welcome! Chat with Fink (Press Ctrl+C to exit)")
-    try:
-        while True:
-            user_input = input("You: ")
-            bot_response = query(user_input)
-            print("Fink:", bot_response)
-    except KeyboardInterrupt:
-        print("\nChat ended.")
+# def main():
+#     print("Welcome! Chat with Fink (Press Ctrl+C to exit)")
+#     try:
+#         while True:
+#             user_input = input("You: ")
+#             bot_response = query(user_input)
+#             print("Fink:", bot_response)
+#     except KeyboardInterrupt:
+#         print("\nChat ended.")
 
-if __name__ == "__main__":
-    main()
+# if __name__ == "__main__":
+#     main()
 
 
 
@@ -660,3 +660,278 @@ if __name__ == "__main__":
 
 # if __name__ == '__main__':
 #     app.run(debug=True)
+
+
+###################
+
+# from flask import Flask, request, jsonify
+# from mysql.connector import errorcode
+# from flask_cors import CORS
+# import mysql.connector
+# import openai
+# import json
+# app = Flask(__name__)
+# CORS(app)
+# # MySQL connection configuration
+# mysql_config = {
+#     'host': 'localhost',
+#     'user': 'root',
+#     'password': 'rahul@333',
+#     'database': 'fink',
+#     'raise_on_warnings': True
+# }
+# # Initialize OpenAI client
+# client = openai.AzureOpenAI(
+#     azure_endpoint="https://finkdataopenai.openai.azure.com/",
+#     api_key='d57b4f240c6f4c12bb8d316469e45f69',
+#     api_version="2024-02-15-preview"
+# )
+# # Load FinKraft data from JSON file
+# with open('finkraft_data.json', 'r') as file:
+#     finkraft_data = json.load(file)
+# def extract_information(query):
+#     query = query.lower()
+#     extracted_info = {}
+#     for key, value in finkraft_data.items():
+#         if key.lower() in query:
+#             extracted_info[key] = value
+#     if extracted_info:
+#         response = ""
+#         for key, value in extracted_info.items():
+#             response += f"{key}:\n{value}\n\n"
+#         return response.strip()
+#     else:
+#         return None
+# def create_table(cursor):
+#     table_schema = (
+#         "CREATE TABLE IF NOT EXISTS CHATGPT ("
+#         "  id INT AUTO_INCREMENT PRIMARY KEY,"
+#         "  email_id VARCHAR(255),"
+#         "  user_input TEXT NOT NULL,"
+#         "  bot_response TEXT NOT NULL"
+#         ")"
+#     )
+#     try:
+#         cursor.execute(table_schema)
+#     except mysql.connector.Error as err:
+#         if err.errno == errorcode.ER_TABLE_EXISTS_ERROR:
+#             print("CHATGPT table already exists.")
+#         else:
+#             print(err.msg)
+# @app.route('/api/chat', methods=['POST'])
+# def chat():
+#     data = request.json
+#     user_input = data.get('message')
+#     email_id = data.get('email')  # Assuming email is passed in the request
+#     conn = None
+#     cursor = None
+#     try:
+#         conn = mysql.connector.connect(**mysql_config)
+#         cursor = conn.cursor()
+#         # Drop the existing table (if exists) and create a new one with the correct schema
+#         cursor.execute("DROP TABLE IF EXISTS CHATGPT")
+#         create_table(cursor)
+#         info = extract_information(user_input)
+#         if info:
+#             bot_response = info
+#         else:
+#             completion = client.chat.completions.create(
+#                 model="gpt-35-turbo",
+#                 messages=[
+#                     {"role": "system", "content": "You are Fink, a chatbot for FinKraft AI. Provide detailed and user-friendly information to the users."},
+#                     {"role": "user", "content": user_input}
+#                 ],
+#                 temperature=0.7,
+#                 max_tokens=150,
+#                 top_p=1.0,
+#                 frequency_penalty=0,
+#                 presence_penalty=0,
+#                 stop=None
+#             )
+#             bot_response = completion.choices[0].message.content
+#         insert_query = "INSERT INTO CHATGPT (email_id, user_input, bot_response) VALUES (%s, %s, %s)"
+#         insert_data = (email_id, user_input, bot_response)
+#         print(insert_data)
+#         cursor.execute(insert_query, insert_data)
+#         conn.commit()
+#         return jsonify({'response': bot_response})
+#     except mysql.connector.Error as err:
+#         print(f"MySQL error: {err}")
+#         return jsonify({'response': 'Database error.'}), 500
+#     finally:
+#         if cursor:
+#             cursor.close()
+#         if conn:
+#             conn.close()
+# if __name__ == '__main__':
+#     app.run(debug=True)
+
+
+############today
+############today
+# import json
+# import openai
+# from fuzzywuzzy import fuzz
+
+# # Load Finkraft data from JSON file
+# with open('finkraft_data.json', 'r') as file:
+#     finkraft_data = json.load(file)
+
+# # Initialize OpenAI client
+# client = openai.AzureOpenAI(
+#     azure_endpoint="https://finkdataopenai.openai.azure.com/",
+#     api_key='d57b4f240c6f4c12bb8d316469e45f69',
+#     api_version="2024-02-15-preview"
+# )
+
+# def extract_information(data, query, threshold=80):
+#     """
+#     Recursively extract relevant information from nested data based on the user's query
+#     with fuzzy matching.
+#     """
+#     # Normalize the query
+#     query = query.lower()
+    
+#     # Define a list to hold matching values
+#     extracted_values = []
+    
+#     if isinstance(data, dict):
+#         for key, value in data.items():
+#             if fuzz.partial_ratio(query, key.lower()) >= threshold:
+#                 if isinstance(value, (dict, list)):
+#                     nested_values = extract_information(value, query, threshold)
+#                     extracted_values.extend(nested_values)
+#                 else:
+#                     extracted_values.append(str(value))
+#             elif isinstance(value, (dict, list)):
+#                 nested_values = extract_information(value, query, threshold)
+#                 extracted_values.extend(nested_values)
+#     elif isinstance(data, list):
+#         for item in data:
+#             nested_values = extract_information(item, query, threshold)
+#             extracted_values.extend(nested_values)
+    
+#     return extracted_values
+
+# def query(user_input):
+#     # Extract relevant information from finkraft_data
+#     info = extract_information(finkraft_data, user_input)
+    
+#     if info:
+#         # Format the extracted information
+#         response = "\n".join(info)
+#         return response
+#     else:
+#         # Call OpenAI API using appropriate method if info not found in JSON
+#         completion = client.chat.completions.create(
+#             model="gpt-35-turbo",
+#             messages=[
+#                 {"role": "system", "content": "I'm a fink. Finkraft for all the details understand then. I only show user-related information about finkraft."},
+#                 {"role": "user", "content": user_input}
+#             ],
+#             temperature=0.7,
+#             max_tokens=150,
+#             top_p=1.0,
+#             frequency_penalty=0,
+#             presence_penalty=0,
+#             stop=None
+#         )
+#         bot_response = completion.choices[0].message.content
+#         return bot_response
+
+# def main():
+#     print("Welcome! Chat with the bot (Press Ctrl+C to exit)")
+#     try:
+#         while True:
+#             user_input = input("You: ")
+#             bot_response = query(user_input)
+#             print("Bot:", bot_response)
+#     except KeyboardInterrupt:
+#         print("\nChat ended.")
+
+# if __name__ == "__main__":
+#     main()
+
+############
+import json
+import openai
+from fuzzywuzzy import fuzz
+
+# Load Finkraft data from JSON file
+with open('finkraft_data.json', 'r') as file:
+    finkraft_data = json.load(file)
+
+# Initialize OpenAI client
+client = openai.AzureOpenAI(
+    azure_endpoint="https://finkdataopenai.openai.azure.com/",
+    api_key='d57b4f240c6f4c12bb8d316469e45f69',
+    api_version="2024-02-15-preview"
+)
+
+def extract_information(data, query, threshold=80):
+    """
+    Recursively extract relevant information from nested data based on the user's query
+    with fuzzy matching.
+    """
+    # Normalize the query
+    query = query.lower()
+    
+    # Define a list to hold matching values
+    extracted_values = []
+    
+    if isinstance(data, dict):
+        for key, value in data.items():
+            if fuzz.partial_ratio(query, key.lower()) >= threshold:
+                if isinstance(value, (dict, list)):
+                    nested_values = extract_information(value, query, threshold)
+                    extracted_values.extend(nested_values)
+                else:
+                    extracted_values.append(str(value))
+            elif isinstance(value, (dict, list)):
+                nested_values = extract_information(value, query, threshold)
+                extracted_values.extend(nested_values)
+    elif isinstance(data, list):
+        for item in data:
+            nested_values = extract_information(item, query, threshold)
+            extracted_values.extend(nested_values)
+    
+    return extracted_values
+
+def query(user_input):
+    # Extract relevant information from finkraft_data
+    info = extract_information(finkraft_data, user_input)
+    
+    if info:
+        # Format the extracted information
+        response = "\n".join(info)
+        return response
+    else:
+        # Call OpenAI API using appropriate method if info not found in JSON
+        completion = client.chat.completions.create(
+            model="gpt-35-turbo",
+            messages=[
+                {"role": "system", "content": "I'm a fink. Finkraft for all the details understand then. I only show user-related information about finkraft."},
+                {"role": "user", "content": user_input}
+            ],
+            temperature=0.7,
+            max_tokens=150,
+            top_p=1.0,
+            frequency_penalty=0,
+            presence_penalty=0,
+            stop=None
+        )
+        bot_response = completion.choices[0].message.content
+        return bot_response
+
+def main():
+    print("Welcome! Chat with the bot (Press Ctrl+C to exit)")
+    try:
+        while True:
+            user_input = input("You: ")
+            bot_response = query(user_input)
+            print("Bot:", bot_response)
+    except KeyboardInterrupt:
+        print("\nChat ended.")
+
+if __name__ == "__main__":
+    main()

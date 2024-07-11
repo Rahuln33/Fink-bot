@@ -1,16 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
 .chatbox__support {
   display: none;
   flex-direction: column;
   justify-content: space-between;
-  width: 300px;
-  height: 400px;
+  width: 500px;
+  height: 500px;
   border: 1px solid #ccc;
   border-radius: 10px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   position: fixed;
   bottom: 80px;
   right: 20px;
-  background: white;
+  background: rgb(248, 248, 252);
+  z-index: 1000; 
+  font-family: 'Open Sans', sans-serif;
 }
 
 .chatbox--active {
@@ -20,11 +24,19 @@
 .chatbox__header {
   display: flex;
   align-items: center;
-  background: #0078d7;
-  color: white;
+  color: black;
   padding: 10px;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
+  width: 480px;
+  height: 80px;
+  background-color: white;
+}
+
+.chatbox__image--header {
+  display: flex;
+  gap: 10px;
+  margin-top: 70px;
 }
 
 .chatbox__image--header img {
@@ -35,19 +47,24 @@
 }
 
 .chatbox__content--header {
-  flex: 1;
+  margin-top: -20px;
+}
+
+.fink1 {
+  margin-top: -20px;
 }
 
 .chatbox__messages {
-  flex: 1;
   padding: 10px;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
+  background-color: white; 
 }
 
 .message {
   display: flex;
+  align-items: flex-start;
   padding: 5px 10px;
   margin: 5px 0;
   border-radius: 10px;
@@ -55,45 +72,57 @@
 
 .user-message {
   align-self: flex-end;
-  background-color: #d1f0ff;
+  background-color: #d1f0ff; 
   color: #333;
 }
 
 .bot-message {
   align-self: flex-start;
-  background-color: #e0f7fa;
   color: #333;
 }
 
+.bot-avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.bot-message-container {
+  display: flex;
+  align-items: center;
+}
+
 .message__content {
-  max-width: 200px;
+  max-width: 500px;
   word-wrap: break-word;
+  background-color: #f1f1f1;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.user-message .message__content {
+  background-color: #d1f0ff;
+  align-self: flex-end;
+}
+
+.bot-message .message__content {
+  background-color:rgb(248, 248, 252);
+  align-self: flex-start;
 }
 
 .chatbox__footer {
   display: flex;
   align-items: center;
   padding: 10px;
-  border-top: 1px solid #ccc;
+  
 }
 
-.chatbox__footer input {
-  flex: 1;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
 
-.chatbox__footer button {
-  background: none;
-  border: none;
-  margin-left: 10px;
-  cursor: pointer;
-}
-
-.chatbox__footer button img {
-  width: 20px;
-  height: 20px;
+.chatbox__button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
 }
 
 .chatbox__button button {
@@ -106,3 +135,87 @@
   width: 50px;
   height: 50px;
 }
+
+.chatbox-buttons {
+  display: flex;
+  justify-content: space-around;
+  padding: 10px;
+  margin-top: 20px;
+}
+
+.chatbox-buttons button {
+  background-color: white; 
+  color: #007bff; 
+  border: 1px solid #007bff; 
+  padding: 10px 15px;
+  margin: 5px;
+  border-radius: 20px; 
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  font-size: 14px;
+}
+
+.chatbox-buttons button:hover {
+  background-color: #007bff; 
+  color: #fff; 
+}
+
+.chatbox__footer {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+
+}
+
+.chatbox__footer input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 20px 0 0 20px; 
+  outline: none;
+  border-right: none;
+}
+
+
+.chatbox__footer {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.input-container {
+  /* position: relative; */
+  flex: 1;
+}
+
+.background-image {
+  width: 100%;
+  height: auto;
+}
+
+.input-on-image {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  background: rgba(255, 255, 255, 0.7);
+}
+
+
+.chatbox__footer img {
+  cursor: pointer;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-left: none; 
+  border-radius: 0 20px 20px 0; 
+  background-color: white; 
+}
+.h6{
+  font-weight: lighter;
+}
+

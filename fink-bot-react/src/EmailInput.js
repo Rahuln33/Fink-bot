@@ -13,8 +13,8 @@ const EmailInput = ({ onEmailSubmit }) => {
 
     return (
         <div className="login-container">
-            <div className="welcome-message"> WELCOME TO FINK CHATBOT </div>
-            <h2 className="login-header">Login</h2>
+            <div className="welcome-message"> WELCOME TO FINK </div>
+            <h2 className="login-header"></h2>
             <form onSubmit={handleEmailSubmit}>
                 <input
                     type="email"
