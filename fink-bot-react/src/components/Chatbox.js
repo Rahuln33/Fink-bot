@@ -76,7 +76,7 @@ const Chatbox = ({ sessionId, email }) => {
             <div className="chatbox__support">
                 <div className="chatbox__header">
                     <div className="chatbox__image--header">
-                        <img src="https://i.pinimg.com/564x/6c/1e/10/6c1e10e6ddfc5002662049930702c23a.jpg" alt="Support" />
+                        <img src="https://cdn.openart.ai/uploads/image_jiLvPve1_1720590592502_raw.jpg" alt="Support" />
                         <div className="chatbox__content--header">
                             <h4 className='fink'>Fink.ai</h4>
                             <h6 className='fink1'>face of finkraft</h6> 
@@ -88,7 +88,7 @@ const Chatbox = ({ sessionId, email }) => {
                         <div key={index} className={`message ${msg.name === 'User' ? 'user-message' : 'bot-message'}`}>
                             {msg.name === 'Bot' && (
                                 <div className="bot-message-container">
-                                     <img src="https://i.pinimg.com/564x/6c/1e/10/6c1e10e6ddfc5002662049930702c23a.jpg" alt="Bot Avatar" className="bot-avatar" />
+                                     <img src="https://cdn.openart.ai/uploads/image_jiLvPve1_1720590592502_raw.jpg" alt="Bot Avatar" className="bot-avatar" />
                                     <div className="message__content">{msg.message}</div>
                                 </div>
                             )}
